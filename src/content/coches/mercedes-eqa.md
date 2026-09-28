@@ -6,9 +6,9 @@ batteryKwh: 70.5
 wltpKm: 560
 realAutonomyKm: 450
 chargingCostHome: 3.6
-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Mercedes-Benz_H243_IMG_5017.jpg/640px-Mercedes-Benz_H243_IMG_5017.jpg"
+image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=640&q=80"
 officialUrl: "https://www.mercedes-benz.es/passengercars/models/suv/eqa/overview.html"
-logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/512px-Mercedes-Logo.svg.png"
+logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg"
 description: "El SUV compacto eléctrico de acceso a la gama Mercedes EQ, con acabados premium y confort de marcha excepcional."
 ---
 ## Resumen

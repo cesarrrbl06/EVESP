@@ -6,9 +6,9 @@ batteryKwh: 61
 wltpKm: 430
 realAutonomyKm: 340
 chargingCostHome: 3.2
-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Omoda_C5_01.jpg/640px-Omoda_C5_01.jpg"
+image: "https://images.unsplash.com/photo-1620882613271-9c60e457f5ab?auto=format&fit=crop&w=640&q=80"
 officialUrl: "https://www.omodaspain.com/"
-logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Omoda_logo.png/512px-Omoda_logo.png"
+logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Omoda_logo.png"
 description: "El Omoda 5 EV es el SUV compacto 100% eléctrico que combina un diseño futurista con tecnología avanzada a un precio inigualable."
 ---
 ## Resumen

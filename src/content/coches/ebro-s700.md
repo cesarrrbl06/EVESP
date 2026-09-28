@@ -6,9 +6,9 @@ batteryKwh: 60
 wltpKm: 420
 realAutonomyKm: 340
 chargingCostHome: 3.3
-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/2023_Ebro_EcoPower.jpg/640px-2023_Ebro_EcoPower.jpg"
+image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=640&q=80"
 officialUrl: "https://www.ebro-automotive.com/"
-logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Ebro_logo_2023.svg/512px-Ebro_logo_2023.svg.png"
+logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Ebro_logo_2023.svg"
 description: "El renacimiento de la mítica marca española Ebro trae un SUV eléctrico fabricado en Barcelona."
 ---
 ## Resumen
