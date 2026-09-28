@@ -6,7 +6,7 @@ batteryKwh: 65
 wltpKm: 410
 realAutonomyKm: 330
 chargingCostHome: 3.4
-image: "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&w=640&q=80"
+image: "/img/jaecoo7.jpg"
 officialUrl: "https://www.jaecoospain.com/"
 logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/91/Jaecoo_logo.svg"
 description: "El Jaecoo 7 es un SUV premium con vocación todoterreno, diseño cuadrado e imponente y acabados de lujo."

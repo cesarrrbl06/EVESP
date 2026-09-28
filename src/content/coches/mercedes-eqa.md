@@ -6,7 +6,7 @@ batteryKwh: 70.5
 wltpKm: 560
 realAutonomyKm: 450
 chargingCostHome: 3.6
-image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=640&q=80"
+image: "/img/eqa.jpg"
 officialUrl: "https://www.mercedes-benz.es/passengercars/models/suv/eqa/overview.html"
 logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg"
 description: "El SUV compacto eléctrico de acceso a la gama Mercedes EQ, con acabados premium y confort de marcha excepcional."
