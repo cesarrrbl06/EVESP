@@ -6,6 +6,7 @@ batteryKwh: 60
 wltpKm: 466
 realAutonomyKm: 380
 chargingCostHome: 3.1
+image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=640&q=80"
 description: "SUV eléctrico familiar: autonomía real frente a WLTP, consumo y coste de carga en casa."
 ---
 ## Resumen
