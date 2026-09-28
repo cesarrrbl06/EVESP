@@ -104,19 +104,19 @@ const graph = {
   <body class="flex min-h-screen flex-col">
     <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-carbon">Saltar al contenido</a>
 
-    <header class="sticky top-0 z-40 border-b border-gray-200 bg-white">
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-black/60 backdrop-blur-xl">
       <div class="contenedor flex h-16 items-center justify-between gap-4">
-        <a href="/" class="flex items-center gap-2" aria-label="EV España, inicio">
-          <span class="grid h-8 w-8 place-items-center rounded-lg bg-primario text-sm font-extrabold text-white" aria-hidden="true">EV</span>
-          <span class="text-lg font-bold tracking-tight">EV España</span>
+        <a href="/" class="flex items-center gap-3" aria-label="EV España, inicio">
+          <img src="/img/logo.jpg" alt="Logo EV España" class="h-10 w-auto object-contain rounded" />
+          <span class="text-xl font-bold tracking-tight text-white glow-text">EV España</span>
         </a>
 
         <nav aria-label="Principal" class="hidden items-center gap-1 md:flex">
           {NAV.map((i) => (
             <a href={i.href} aria-current={path.startsWith(i.href) ? 'page' : undefined}
-               class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-neutro hover:text-carbon aria-[current=page]:text-primario">{i.label}</a>
+               class="rounded-lg px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/10 hover:text-white aria-[current=page]:text-cyan-400 aria-[current=page]:glow-text transition-all">{i.label}</a>
           ))}
-          <a href="/calculadoras/" class="btn-primario ml-2">Calcular carga</a>
+          <a href="/calculadoras/" class="btn-primario ml-2 border-cyan-500/50 shadow-[0_0_15px_rgba(0,240,255,0.3)]">Calcular carga</a>
         </nav>
 
         <!-- Menú móvil sin JavaScript (details/summary) -->
