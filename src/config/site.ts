@@ -9,7 +9,7 @@ export const SITE = {
   domicilio: 'España',
   registro: '', // Solo si eres sociedad: datos del Registro Mercantil
   actualizado: '28 de septiembre de 2026',
-  adsenseClient: import.meta.env.PUBLIC_ADSENSE_CLIENT ?? '',
+  adsenseClient: import.meta.env.PUBLIC_ADSENSE_CLIENT ?? 'ca-pub-9743905239968826',
   formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT ?? 'https://formspree.io/f/TU_ID',
 };
 
