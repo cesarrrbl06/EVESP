@@ -23,17 +23,17 @@ const filas: [string, string][] = [
 ---
 <Layout title={`${d.brand} ${d.title}: autonomía real y coste de carga`} description={d.description} image={d.image.endsWith('.svg') ? undefined : d.image}>
   <div class="contenedor py-10">
-    <nav aria-label="Ruta de navegación" class="mb-4 text-sm text-gray-600"><a class="underline" href="/coches/">Coches</a> / {d.brand}</nav>
-    <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">{d.brand} {d.title}</h1>
-    <p class="mt-2 max-w-2xl text-gray-700">{d.description}</p>
+    <nav aria-label="Ruta de navegación" class="mb-4 text-sm text-gray-400"><a class="underline text-cyan-400" href="/coches/">Coches</a> <span class="text-gray-500">/</span> {d.brand}</nav>
+    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white sm:text-4xl glow-text">{d.brand} {d.title}</h1>
+    <p class="mt-2 max-w-2xl text-gray-400">{d.description}</p>
 
     <div class="mt-8 grid gap-8 lg:grid-cols-2">
-      <img src={d.image} alt={`${d.brand} ${d.title}`} width="640" height="360" decoding="async" fetchpriority="high" class="aspect-video w-full rounded-2xl bg-neutro object-cover" />
+      <img src={d.image} alt={`${d.brand} ${d.title}`} width="640" height="360" decoding="async" fetchpriority="high" class="aspect-video w-full rounded-2xl bg-white/5 object-cover border border-white/10" />
       <table class="w-full text-left text-sm">
         <caption class="sr-only">Ficha técnica de {d.brand} {d.title}</caption>
         <tbody>
           {filas.map(([k, v]) => (
-            <tr class="border-b border-gray-300"><th scope="row" class="py-3 pr-4 font-medium text-gray-700">{k}</th><td class="py-3 font-bold tabular-nums">{v}</td></tr>
+            <tr class="border-b border-white/10"><th scope="row" class="py-3 pr-4 font-medium text-gray-400">{k}</th><td class="py-3 font-bold tabular-nums text-white">{v}</td></tr>
           ))}
         </tbody>
       </table>
@@ -50,7 +50,7 @@ const filas: [string, string][] = [
       </div>
     )}
 
-    <h2 class="mb-4 mt-12 text-2xl font-bold">Calcula tu recarga con este coche</h2>
+    <h2 class="mb-4 mt-12 text-2xl font-bold text-white">Calcula tu recarga con este coche</h2>
     <CalculadoraCarga id="calc-coche" batteryKwh={d.batteryKwh} consumption={Math.round(consumo * 10) / 10} />
   </div>
 </Layout>

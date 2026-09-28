@@ -6,14 +6,14 @@ const coches = (await getCollection('coches')).sort((a, b) => a.data.priceCash -
 ---
 <Layout title="Coches eléctricos en España: precio, autonomía real y coste de carga" description="Catálogo de coches eléctricos con precio, autonomía real frente a WLTP y coste de carga por cada 100 km.">
   <div class="contenedor py-10">
-    <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Coches eléctricos</h1>
-    <p class="mt-2 max-w-2xl text-gray-700">Precio, autonomía real y coste de carga en casa. Consulta cómo calculamos los datos en la <a class="font-medium text-primario underline underline-offset-2" href="/metodologia/">metodología</a>.</p>
+    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white sm:text-4xl glow-text">Coches eléctricos</h1>
+    <p class="mt-2 max-w-2xl text-gray-400">Precio, autonomía real y coste de carga en casa. Consulta cómo calculamos los datos en la <a class="font-medium text-cyan-400 underline underline-offset-2" href="/metodologia/">metodología</a>.</p>
 
     <form role="search" class="mt-6 max-w-md" onsubmit="return false">
       <label for="filtro" class="etiqueta">Filtrar por marca o modelo</label>
       <input id="filtro" type="search" class="campo" autocomplete="off" />
     </form>
-    <p id="vacio" class="mt-6 font-medium" role="status" hidden>No hay modelos que coincidan con tu búsqueda.</p>
+    <p id="vacio" class="mt-6 font-medium text-gray-300" role="status" hidden>No hay modelos que coincidan con tu búsqueda.</p>
 
     <div id="lista" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {coches.map((c) => <CocheCard coche={c} />)}

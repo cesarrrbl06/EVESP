@@ -30,13 +30,13 @@
 
 @layer components {
   .contenedor { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
-  .btn { @apply inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 backdrop-blur-md shadow-sm; }
+  .btn { @apply inline-flex min-h-[48px] items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 backdrop-blur-md shadow-sm sm:min-h-[44px] sm:py-2.5; }
   .btn-primario { @apply btn bg-blue-600/90 text-white hover:bg-blue-700/90 hover:shadow-md hover:scale-[1.02] border border-white/20; }
-  .btn-secundario { @apply btn border border-white/40 bg-white/50 text-carbon hover:bg-white/70 hover:shadow-md hover:scale-[1.02]; }
-  .campo { @apply block min-h-[44px] w-full rounded-xl border border-white/50 bg-white/40 px-3 py-2 text-base text-carbon backdrop-blur-sm transition-all focus:bg-white/70 focus:border-blue-500/50 focus:ring focus:ring-blue-500/20 shadow-sm; }
-  .etiqueta { @apply mb-1 block text-sm font-semibold text-carbon/90; }
-  .ayuda { @apply mt-1 text-sm text-gray-600/90; }
-  .tarjeta-glass { @apply rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl transition-all hover:bg-white/10 hover:shadow-cyan-500/20 hover:-translate-y-1; }
+  .btn-secundario { @apply btn border border-white/30 bg-white/10 text-gray-200 hover:bg-white/20 hover:shadow-md hover:scale-[1.02]; }
+  .campo { @apply block min-h-[48px] w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-base text-gray-100 backdrop-blur-sm transition-all focus:bg-white/15 focus:border-cyan-500/50 focus:ring focus:ring-cyan-500/20 shadow-sm placeholder:text-gray-500 sm:min-h-[44px]; }
+  .etiqueta { @apply mb-1 block text-sm font-semibold text-gray-300; }
+  .ayuda { @apply mt-1 text-sm text-gray-400; }
+  .tarjeta-glass { @apply rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6 shadow-2xl backdrop-blur-xl transition-all hover:bg-white/10 hover:shadow-cyan-500/20 hover:-translate-y-1; }
 
   /* Texto largo (legales, guías, metodología) */
   .prose-ev { @apply max-w-3xl text-base leading-7 text-gray-300 tarjeta-glass mx-auto; }
@@ -47,9 +47,9 @@
   .prose-ev ul { @apply list-disc pl-6; }
   .prose-ev ol { @apply list-decimal pl-6; }
   .prose-ev li { @apply mb-1; }
-  .prose-ev a { @apply font-medium text-primario underline underline-offset-2 hover:text-primario-oscuro; }
-  .prose-ev blockquote { @apply rounded-r-lg border-l-4 border-primario bg-neutro px-4 py-3 text-gray-700; }
+  .prose-ev a { @apply font-medium text-cyan-400 underline underline-offset-2 hover:text-cyan-300; }
+  .prose-ev blockquote { @apply rounded-r-lg border-l-4 border-cyan-500 bg-white/5 px-4 py-3 text-gray-300; }
   .prose-ev table { @apply my-6 w-full border-collapse text-left text-sm; }
-  .prose-ev th, .prose-ev td { @apply border border-gray-300 px-3 py-2 align-top; }
-  .prose-ev th { @apply bg-neutro font-semibold; }
+  .prose-ev th, .prose-ev td { @apply border border-white/10 px-3 py-2 align-top; }
+  .prose-ev th { @apply bg-white/5 font-semibold text-gray-200; }
 }

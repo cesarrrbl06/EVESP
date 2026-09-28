@@ -11,15 +11,15 @@ const tarifas = [
   { value: 'custom', label: 'Personalizado', price: '' },
 ];
 ---
-<section id={id} data-calc aria-labelledby={`${id}-titulo`} class="overflow-hidden rounded-2xl border border-gray-300 bg-white">
-  <div class="flex items-center justify-between bg-carbon px-5 py-4 text-white">
-    <h2 id={`${id}-titulo`} class="text-lg font-bold">Calculadora de coste de carga</h2>
-    <span class="rounded bg-datos px-2 py-1 text-xs font-bold text-carbon">Tiempo real</span>
+<section id={id} data-calc aria-labelledby={`${id}-titulo`} class="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+  <div class="flex items-center justify-between bg-white/5 border-b border-white/10 px-4 sm:px-5 py-4 text-white">
+    <h2 id={`${id}-titulo`} class="text-base sm:text-lg font-bold">Calculadora de coste de carga</h2>
+    <span class="rounded bg-cyan-500/20 px-2 py-1 text-xs font-bold text-cyan-400 border border-cyan-500/30">Tiempo real</span>
   </div>
 
   <div class="grid gap-0 lg:grid-cols-5">
     <!-- ENTRADAS -->
-    <form data-form novalidate class="grid gap-5 p-5 lg:col-span-3" autocomplete="off">
+    <form data-form novalidate class="grid gap-5 p-4 sm:p-5 lg:col-span-3" autocomplete="off">
       <div>
         <label class="etiqueta" for={`${id}-bat`}>Capacidad neta de la batería (kWh)</label>
         <input class="campo" id={`${id}-bat`} data-in="bat" type="number" inputmode="decimal" min="1" step="0.1" value={batteryKwh} />
@@ -42,7 +42,7 @@ const tarifas = [
           {tarifas.map((t) => (
             <label class="cursor-pointer">
               <input type="radio" class="peer sr-only" name={`${id}-tarifa`} value={t.value} data-price={t.price} data-tarifa checked={t.value === 'llano'} />
-              <span class="inline-flex min-h-[44px] items-center rounded-lg border border-gray-500 px-3 py-2 text-sm font-medium peer-checked:border-primario peer-checked:bg-primario peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-primario">
+              <span class="inline-flex min-h-[48px] sm:min-h-[44px] items-center rounded-lg border border-white/20 bg-white/5 px-3 py-2.5 text-sm font-medium text-gray-300 peer-checked:border-cyan-500 peer-checked:bg-cyan-500/20 peer-checked:text-cyan-400 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cyan-500 transition-all">
                 {t.label}{t.price && ` · ${t.price.replace('.', ',')} €`}
               </span>
             </label>
@@ -63,7 +63,7 @@ const tarifas = [
         </div>
         <div class="flex items-end">
           <label class="flex min-h-[44px] cursor-pointer items-center gap-3 text-sm font-medium">
-            <input type="checkbox" data-in="ac" checked class="h-5 w-5 rounded border-gray-500 accent-primario" />
+            <input type="checkbox" data-in="ac" checked class="h-5 w-5 rounded border-white/20 accent-cyan-500" />
             Carga en alterna (AC): +10 % de pérdidas
           </label>
         </div>
@@ -75,19 +75,19 @@ const tarifas = [
     </form>
 
     <!-- RESULTADOS -->
-    <div class="bg-neutro p-5 lg:col-span-2">
-      <p data-error role="alert" hidden class="mb-3 rounded-lg bg-white p-3 text-sm font-semibold text-red-700"></p>
+    <div class="bg-white/5 border-t border-white/10 lg:border-t-0 lg:border-l p-4 sm:p-5 lg:col-span-2">
+      <p data-error role="alert" hidden class="mb-3 rounded-lg bg-red-500/20 border border-red-500/30 p-3 text-sm font-semibold text-red-400"></p>
       <div aria-live="polite" aria-atomic="true">
-        <p class="text-sm font-semibold text-gray-700">Coste total de la recarga</p>
-        <p class="text-5xl font-extrabold tabular-nums text-datos-oscuro" data-out="total">—</p>
-        <dl class="mt-5 grid gap-3 text-sm">
-          <div class="flex justify-between gap-4 border-b border-gray-300 pb-2"><dt>kWh netos a la batería</dt><dd class="font-bold tabular-nums" data-out="net">—</dd></div>
-          <div class="flex justify-between gap-4 border-b border-gray-300 pb-2"><dt>kWh facturados (con pérdidas)</dt><dd class="font-bold tabular-nums" data-out="billed">—</dd></div>
-          <div class="flex justify-between gap-4 border-b border-gray-300 pb-2"><dt>Kilómetros añadidos</dt><dd class="font-bold tabular-nums" data-out="km">—</dd></div>
-          <div class="flex justify-between gap-4"><dt>Coste por 100 km</dt><dd class="font-bold tabular-nums text-datos-oscuro" data-out="per100">—</dd></div>
+        <p class="text-sm font-semibold text-gray-400">Coste total de la recarga</p>
+        <p class="text-4xl sm:text-5xl font-extrabold tabular-nums text-green-400" data-out="total">—</p>
+        <dl class="mt-5 grid gap-3 text-sm text-gray-300">
+          <div class="flex justify-between gap-4 border-b border-white/10 pb-2"><dt>kWh netos a la batería</dt><dd class="font-bold tabular-nums text-white" data-out="net">—</dd></div>
+          <div class="flex justify-between gap-4 border-b border-white/10 pb-2"><dt>kWh facturados (con pérdidas)</dt><dd class="font-bold tabular-nums text-white" data-out="billed">—</dd></div>
+          <div class="flex justify-between gap-4 border-b border-white/10 pb-2"><dt>Kilómetros añadidos</dt><dd class="font-bold tabular-nums text-white" data-out="km">—</dd></div>
+          <div class="flex justify-between gap-4"><dt>Coste por 100 km</dt><dd class="font-bold tabular-nums text-green-400" data-out="per100">—</dd></div>
         </dl>
       </div>
-      <p class="mt-5 text-xs text-gray-600">Estimación orientativa. Los precios son ejemplos: consulta tu factura o la app del operador.</p>
+      <p class="mt-5 text-xs text-gray-500">Estimación orientativa. Los precios son ejemplos: consulta tu factura o la app del operador.</p>
     </div>
   </div>
 </section>
