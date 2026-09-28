@@ -28,7 +28,11 @@ const coches = (await getCollection('coches')).sort((a, b) => a.data.priceCash -
   function filtrar() {
     const q = input.value.trim().toLowerCase();
     let n = 0;
-    cards.forEach((c) => { const ok = c.dataset.search!.includes(q); c.hidden = !ok; if (ok) n++; });
+    cards.forEach((c) => { 
+      const ok = c.dataset.search!.includes(q); 
+      c.style.display = ok ? '' : 'none'; 
+      if (ok) n++; 
+    });
     vacio.hidden = n > 0;
   }
   input.value = new URLSearchParams(location.search).get('q') ?? '';
