@@ -1,0 +1,3 @@
+# ads.txt de evespana.es — sustituye pub-0000000000000000 por tu ID de editor de AdSense
+# (AdSense > Cuenta > Configuración > Información de la cuenta). Debe servirse en https://evespana.es/ads.txt
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

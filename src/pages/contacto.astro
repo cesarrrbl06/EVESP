@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+<Layout title="Contacto" description="Contacta con EV España para dudas, correcciones de datos o propuestas. Respondemos por correo electrónico.">
+  <article class="contenedor py-10">
+    <div class="prose-ev">
+      <h1>Contacto</h1>
+      <p>¿Has detectado un dato incorrecto, quieres proponer un modelo o tienes una consulta? Escríbenos. Respondemos normalmente en 2–3 días laborables.</p>
+      <ul>
+        <li><strong>Correo:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        <li><strong>Titular:</strong> {SITE.titular}</li>
+        <li><strong>Domicilio:</strong> {SITE.domicilio}</li>
+      </ul>
+    </div>
+
+    <!-- Formulario accesible. Requiere un endpoint (Formspree/Web3Forms) en PUBLIC_FORM_ENDPOINT -->
+    <form action={SITE.formEndpoint} method="POST" class="mt-8 grid max-w-xl gap-5" aria-labelledby="form-titulo">
+      <h2 id="form-titulo" class="text-2xl font-bold">Envíanos un mensaje</h2>
+      <p class="ayuda">Los campos con asterisco (*) son obligatorios.</p>
+
+      <div>
+        <label class="etiqueta" for="nombre">Nombre *</label>
+        <input class="campo" id="nombre" name="nombre" type="text" required autocomplete="name" />
+      </div>
+      <div>
+        <label class="etiqueta" for="email">Correo electrónico *</label>
+        <input class="campo" id="email" name="email" type="email" required autocomplete="email" aria-describedby="email-ayuda" />
+        <p class="ayuda" id="email-ayuda">Solo lo usaremos para responderte.</p>
+      </div>
+      <div>
+        <label class="etiqueta" for="asunto">Asunto</label>
+        <select class="campo" id="asunto" name="asunto">
+          <option>Corrección de datos</option>
+          <option>Consulta general</option>
+          <option>Propuesta de colaboración</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div>
+        <label class="etiqueta" for="mensaje">Mensaje *</label>
+        <textarea class="campo" id="mensaje" name="mensaje" rows="6" required></textarea>
+      </div>
+      <!-- Honeypot anti-spam: oculto para personas -->
+      <div class="hidden" aria-hidden="true"><label>No rellenar <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></label></div>
+
+      <label class="flex items-start gap-3 text-sm">
+        <input type="checkbox" name="consentimiento" required class="mt-1 h-5 w-5 accent-primario" />
+        <span>He leído la <a class="font-medium text-primario underline underline-offset-2" href="/politica-de-privacidad/">Política de privacidad</a> y acepto el tratamiento de mis datos para recibir respuesta. *</span>
+      </label>
+      <div><button type="submit" class="btn-primario">Enviar mensaje</button></div>
+    </form>
+  </article>
+</Layout>

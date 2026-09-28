@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CalculadoraCarga from '../../components/CalculadoraCarga.astro';
+import { eur, num, consumo100, gapWltp } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const coches = await getCollection('coches');
+  return coches.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+const consumo = consumo100(d.batteryKwh, d.realAutonomyKm);
+const filas: [string, string][] = [
+  ['Precio al contado', eur(d.priceCash)],
+  ['Batería neta', `${num(d.batteryKwh, 1)} kWh`],
+  ['Autonomía WLTP', `${num(d.wltpKm)} km`],
+  ['Autonomía real', `${num(d.realAutonomyKm)} km (−${gapWltp(d.wltpKm, d.realAutonomyKm)} % vs WLTP)`],
+  ['Consumo real', `${num(consumo, 1)} kWh/100 km`],
+  ['Coste de carga en casa', `${num(d.chargingCostHome, 2)} € / 100 km`],
+];
+---
+<Layout title={`${d.brand} ${d.title}: autonomía real y coste de carga`} description={d.description} image={d.image.endsWith('.svg') ? undefined : d.image}>
+  <div class="contenedor py-10">
+    <nav aria-label="Ruta de navegación" class="mb-4 text-sm text-gray-600"><a class="underline" href="/coches/">Coches</a> / {d.brand}</nav>
+    <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">{d.brand} {d.title}</h1>
+    <p class="mt-2 max-w-2xl text-gray-700">{d.description}</p>
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-2">
+      <img src={d.image} alt={`${d.brand} ${d.title}`} width="640" height="360" decoding="async" fetchpriority="high" class="aspect-video w-full rounded-2xl bg-neutro object-cover" />
+      <table class="w-full text-left text-sm">
+        <caption class="sr-only">Ficha técnica de {d.brand} {d.title}</caption>
+        <tbody>
+          {filas.map(([k, v]) => (
+            <tr class="border-b border-gray-300"><th scope="row" class="py-3 pr-4 font-medium text-gray-700">{k}</th><td class="py-3 font-bold tabular-nums">{v}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose-ev mt-10"><Content /></div>
+
+    <h2 class="mb-4 mt-12 text-2xl font-bold">Calcula tu recarga con este coche</h2>
+    <CalculadoraCarga id="calc-coche" batteryKwh={d.batteryKwh} consumption={Math.round(consumo * 10) / 10} />
+  </div>
+</Layout>

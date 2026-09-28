@@ -1,0 +1,44 @@
+---
+// PLANTILLA orientativa (LSSI-CE, Ley 34/2002). Revísala con un profesional antes de publicar.
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+<Layout title="Aviso legal" description="Aviso legal de EV España: titular del sitio web, condiciones de uso, propiedad intelectual y responsabilidad.">
+  <article class="contenedor py-10">
+    <div class="prose-ev">
+      <h1>Aviso legal</h1>
+      <p><small>Última actualización: {SITE.actualizado}</small></p>
+
+      <h2>1. Datos identificativos del titular</h2>
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), se informa de que el titular del sitio web <strong>{SITE.url.replace('https://', '')}</strong> es:</p>
+      <ul>
+        <li><strong>Titular:</strong> {SITE.titular}</li>
+        <li><strong>NIF/CIF:</strong> {SITE.nif}</li>
+        <li><strong>Domicilio:</strong> {SITE.domicilio}</li>
+        <li><strong>Correo electrónico:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        {SITE.registro && <li><strong>Datos registrales:</strong> {SITE.registro}</li>}
+      </ul>
+
+      <h2>2. Objeto y condiciones de uso</h2>
+      <p>{SITE.name} ofrece contenido informativo y herramientas de cálculo sobre vehículos eléctricos. El acceso es gratuito y atribuye la condición de usuario, que se compromete a hacer un uso lícito, diligente y conforme a la buena fe, sin dañar el funcionamiento del sitio ni los derechos de terceros.</p>
+
+      <h2>3. Carácter informativo de los contenidos</h2>
+      <p>Los datos, precios, autonomías y resultados de las calculadoras son <strong>estimaciones orientativas</strong> basadas en las fuentes y fórmulas descritas en la <a href="/metodologia/">metodología</a>. No constituyen oferta comercial ni asesoramiento profesional, financiero o técnico. Los precios y características pueden variar; comprueba siempre la información con el fabricante, el distribuidor o el operador de carga.</p>
+
+      <h2>4. Propiedad intelectual e industrial</h2>
+      <p>Los textos, diseños, código, tablas y demás elementos del sitio son titularidad de {SITE.titular} o se usan con licencia, y están protegidos por la normativa de propiedad intelectual. Se permite citar breves fragmentos indicando la fuente y enlazando a la página original. Queda prohibida su reproducción total o parcial con fines comerciales sin autorización expresa. Las marcas y nombres de vehículos pertenecen a sus respectivos propietarios y se citan solo con fines informativos.</p>
+
+      <h2>5. Publicidad y enlaces</h2>
+      <p>El sitio puede mostrar publicidad de terceros (por ejemplo, Google AdSense) claramente diferenciada del contenido editorial. La presencia de publicidad no condiciona la independencia de los análisis. Los enlaces a sitios externos se facilitan por conveniencia; {SITE.name} no controla ni se responsabiliza de sus contenidos o políticas.</p>
+
+      <h2>6. Exclusión de responsabilidad</h2>
+      <p>{SITE.titular} no garantiza la ausencia de errores ni la disponibilidad continuada del sitio, y no responde de los daños derivados del uso de la información publicada, salvo en los supuestos en que la ley lo impida. Si detectas un error, escríbenos a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> y lo corregiremos.</p>
+
+      <h2>7. Protección de datos y cookies</h2>
+      <p>El tratamiento de datos personales se describe en la <a href="/politica-de-privacidad/">Política de privacidad</a> y el uso de cookies en la <a href="/politica-de-cookies/">Política de cookies</a>.</p>
+
+      <h2>8. Legislación aplicable y jurisdicción</h2>
+      <p>Este aviso se rige por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a la normativa vigente; si el usuario es consumidor, los de su domicilio.</p>
+    </div>
+  </article>
+</Layout>

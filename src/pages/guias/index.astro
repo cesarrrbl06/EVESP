@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { fechaLarga } from '../../lib/format';
+const guias = (await getCollection('guias')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Layout title="Guías de coche eléctrico: costes, carga y autonomía" description="Guías prácticas sobre coste de carga, autonomía real, carga pública y compra de coche eléctrico en España.">
+  <div class="contenedor py-10">
+    <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Guías</h1>
+    <ul class="mt-8 grid max-w-3xl gap-4">
+      {guias.map((g) => (
+        <li class="rounded-2xl border border-gray-300 p-5">
+          <p class="text-sm font-semibold text-primario">{g.data.category}</p>
+          <h2 class="mt-1 text-xl font-bold"><a class="hover:text-primario" href={`/guias/${g.slug}/`}>{g.data.title}</a></h2>
+          <p class="mt-2 text-gray-700">{g.data.description}</p>
+          <p class="mt-2 text-xs text-gray-600"><time datetime={g.data.pubDate.toISOString()}>{fechaLarga(g.data.pubDate)}</time> · {g.data.author}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

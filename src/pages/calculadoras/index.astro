@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CalculadoraCarga from '../../components/CalculadoraCarga.astro';
+---
+<Layout title="Calculadora de coste de carga de un coche eléctrico" description="Calcula cuánto cuesta cargar tu coche eléctrico según la batería, el porcentaje de carga, la tarifa y las pérdidas. Resultado en euros y por cada 100 km.">
+  <div class="contenedor py-10">
+    <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Calculadora de coste de carga</h1>
+    <p class="mt-2 max-w-2xl text-gray-700">Introduce los datos de tu coche y la tarifa que vas a usar. El cálculo se actualiza al instante y no se envía ningún dato.</p>
+    <div class="mt-8"><CalculadoraCarga /></div>
+
+    <div class="prose-ev mt-12">
+      <h2>Cómo se calcula</h2>
+      <ol>
+        <li><strong>kWh netos</strong> = capacidad de la batería × (% final − % inicial) ÷ 100.</li>
+        <li><strong>kWh facturados</strong> = kWh netos × 1,10 en carga AC (10 % de pérdidas estimadas). En carga rápida DC no se aplican.</li>
+        <li><strong>Coste</strong> = kWh facturados × precio del kWh.</li>
+        <li><strong>Coste por 100 km</strong> = consumo medio × (1 + pérdidas) × precio del kWh.</li>
+      </ol>
+      <p>Más detalles y fuentes en la <a href="/metodologia/">metodología</a>.</p>
+    </div>
+  </div>
+</Layout>

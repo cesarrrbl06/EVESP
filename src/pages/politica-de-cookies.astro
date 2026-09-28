@@ -1,0 +1,38 @@
+---
+// PLANTILLA orientativa (art. 22.2 LSSI-CE y guía de la AEPD sobre cookies). Actualiza la tabla con las cookies reales.
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+<Layout title="Política de cookies" description="Qué cookies y tecnologías similares usa EV España, para qué sirven y cómo gestionarlas o rechazarlas.">
+  <article class="contenedor py-10">
+    <div class="prose-ev">
+      <h1>Política de cookies</h1>
+      <p><small>Última actualización: {SITE.actualizado}</small></p>
+
+      <h2>1. ¿Qué son las cookies?</h2>
+      <p>Son pequeños archivos que un sitio guarda en tu dispositivo para recordar información. También se usan tecnologías equivalentes (almacenamiento local, identificadores de publicidad).</p>
+
+      <h2>2. Cookies que utiliza este sitio</h2>
+      <table>
+        <thead><tr><th>Tipo</th><th>Proveedor</th><th>Finalidad</th><th>Consentimiento</th></tr></thead>
+        <tbody>
+          <tr><td>Técnicas</td><td>EV España</td><td>Funcionamiento del sitio. Actualmente el sitio no necesita cookies propias para funcionar.</td><td>No requerido</td></tr>
+          <tr><td>Publicidad</td><td>Google AdSense y socios</td><td>Mostrar y medir anuncios, personalizados o no</td><td>Sí, mediante el banner de consentimiento</td></tr>
+          <tr><td>Analítica (opcional)</td><td>[Herramienta que uses]</td><td>Medir visitas de forma agregada</td><td>Sí</td></tr>
+        </tbody>
+      </table>
+      <p>Las cookies de publicidad y analítica <strong>solo se instalan si las aceptas</strong>. Puedes cambiar tu decisión en cualquier momento desde el enlace de gestión de consentimiento del sitio o borrando las cookies en tu navegador.</p>
+
+      <h2>3. Cómo desactivar las cookies en tu navegador</h2>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/es-es/microsoft-edge" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+
+      <h2>4. Más información</h2>
+      <p>Consulta también la <a href="/politica-de-privacidad/">Política de privacidad</a>. Para dudas sobre cookies, escribe a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </div>
+  </article>
+</Layout>

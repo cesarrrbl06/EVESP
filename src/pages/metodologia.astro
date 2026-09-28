@@ -1,0 +1,53 @@
+---
+// EDITA este texto para que describa EXACTAMENTE lo que haces. No afirmes pruebas que no realices.
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+<Layout title="Metodología: cómo calculamos la autonomía real y el coste de carga" description="Cómo estima EV España la autonomía real frente a WLTP, el consumo y el coste de carga: fuentes, fórmulas, condiciones y límites.">
+  <article class="contenedor py-10">
+    <div class="prose-ev">
+      <h1>Metodología</h1>
+      <p><small>Última actualización: {SITE.actualizado}</small></p>
+      <p>Los datos oficiales de autonomía (WLTP) sirven para comparar coches, pero rara vez coinciden con el uso diario. En EV España publicamos una <strong>autonomía real estimada</strong> y explicamos cómo llegamos a ella para que puedas juzgarla y replicarla.</p>
+
+      <h2>1. Por qué WLTP no basta</h2>
+      <p>El ciclo WLTP se mide en laboratorio a unos 23 °C, con una velocidad máxima de 131 km/h y una media de unos 46 km/h. No incluye tramos sostenidos a 120 km/h, frío intenso, viento ni desniveles, que son los factores que más reducen la autonomía real.</p>
+
+      <h2>2. Cómo obtenemos la autonomía real</h2>
+      <p>Cada cifra publicada indica su tipo de fuente:</p>
+      <ol>
+        <li><strong>Medición propia:</strong> recorrido de referencia en tres tramos —urbano (≤50 km/h), carretera (≈90 km/h) y autovía (120 km/h de velocímetro)— registrando kWh consumidos según el ordenador de a bordo y, cuando es posible, kWh recargados.</li>
+        <li><strong>Datos de terceros contrastados:</strong> pruebas independientes publicadas y datos de propietarios, citados con enlace y fecha.</li>
+        <li><strong>Estimación por modelo:</strong> cuando no hay datos de uso, se aplica un factor sobre WLTP indicado en cada ficha.</li>
+      </ol>
+      <p>La autonomía real se calcula con la fórmula: <strong>autonomía real (km) = capacidad neta (kWh) ÷ consumo real (kWh/100 km) × 100</strong>.</p>
+
+      <h2>3. Condiciones de referencia</h2>
+      <table>
+        <thead><tr><th>Parámetro</th><th>Valor de referencia</th></tr></thead>
+        <tbody>
+          <tr><td>Temperatura</td><td>Entre 15 y 25 °C (se indica si es distinta)</td></tr>
+          <tr><td>Climatización</td><td>Automática a 21 °C</td></tr>
+          <tr><td>Carga a bordo</td><td>Conductor + 1 ocupante</td></tr>
+          <tr><td>Neumáticos</td><td>Presión recomendada por el fabricante</td></tr>
+          <tr><td>Batería</td><td>Del 100 % al 10 % en la prueba completa</td></tr>
+        </tbody>
+      </table>
+
+      <h2>4. Cómo calculamos el coste de carga</h2>
+      <ul>
+        <li><strong>kWh netos</strong> = capacidad × (% final − % inicial) ÷ 100.</li>
+        <li><strong>kWh facturados</strong> = kWh netos × (1 + pérdidas). Usamos un 10 % en carga en alterna (AC) y 0 % en continua (DC), porque las pérdidas de la carga rápida se producen antes del contador del cargador.</li>
+        <li><strong>Coste</strong> = kWh facturados × precio del kWh.</li>
+        <li><strong>Coste por 100 km</strong> = consumo real × (1 + pérdidas) × precio del kWh.</li>
+      </ul>
+      <p>Los precios de referencia (valle, llano y carga pública rápida) son <strong>ejemplos redondeados</strong> que revisamos periódicamente; en cada guía indicamos la fecha de consulta. Tu tarifa real puede ser distinta.</p>
+
+      <h2>5. Límites</h2>
+      <p>La autonomía real cambia con el conductor, la ruta, la estación y el desgaste de la batería. Nuestras cifras son un punto de partida comparable, no una garantía. Los precios de carga pública varían según operador, potencia y suscripción.</p>
+
+      <h2>6. Independencia y correcciones</h2>
+      <p>Los contenidos son editorialmente independientes. Cuando mostramos publicidad (p. ej. Google AdSense) la identificamos como tal y no influye en las conclusiones. Si encuentras un error, escríbenos desde la página de <a href="/contacto/">contacto</a>: corregimos y registramos la fecha del cambio.</p>
+    </div>
+  </article>
+</Layout>

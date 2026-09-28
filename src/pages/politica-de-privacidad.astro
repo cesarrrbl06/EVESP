@@ -1,0 +1,47 @@
+---
+// PLANTILLA orientativa (RGPD 2016/679 y LOPDGDD 3/2018). Adáptala a tus herramientas reales y revísala con un profesional.
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+<Layout title="Política de privacidad" description="Cómo trata EV España tus datos personales: responsable, finalidades, base jurídica, destinatarios, plazos y derechos (RGPD y LOPDGDD).">
+  <article class="contenedor py-10">
+    <div class="prose-ev">
+      <h1>Política de privacidad</h1>
+      <p><small>Última actualización: {SITE.actualizado}</small></p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <p><strong>{SITE.titular}</strong> · NIF/CIF {SITE.nif} · {SITE.domicilio} · <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+      <h2>2. Qué datos tratamos y para qué</h2>
+      <table>
+        <thead><tr><th>Finalidad</th><th>Datos</th><th>Base jurídica</th><th>Conservación</th></tr></thead>
+        <tbody>
+          <tr><td>Atender consultas del formulario de contacto</td><td>Nombre, correo electrónico, mensaje</td><td>Consentimiento (art. 6.1.a RGPD)</td><td>El tiempo necesario para responder y, después, durante los plazos de prescripción legal</td></tr>
+          <tr><td>Medición de audiencia (si se activa analítica)</td><td>Datos de uso y dispositivo, generalmente seudonimizados</td><td>Consentimiento</td><td>Según la herramienta; ver política de cookies</td></tr>
+          <tr><td>Publicidad (Google AdSense)</td><td>Identificadores en línea, datos de navegación</td><td>Consentimiento</td><td>Según Google; ver política de cookies</td></tr>
+        </tbody>
+      </table>
+      <p>Las calculadoras funcionan en tu navegador: los valores que introduces <strong>no se envían</strong> a nuestros servidores.</p>
+
+      <h2>3. Destinatarios y encargados</h2>
+      <ul>
+        <li><strong>Alojamiento y CDN:</strong> Cloudflare, Inc. o Vercel Inc. (proveedores de infraestructura, que pueden tratar la IP para servir y proteger el sitio).</li>
+        <li><strong>Formulario de contacto:</strong> el proveedor configurado (p. ej. Formspree) actúa como encargado del tratamiento.</li>
+        <li><strong>Publicidad:</strong> Google Ireland Ltd. y sus socios. Más información sobre cómo Google usa los datos: <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
+      </ul>
+      <p>No vendemos tus datos. Cuando un proveedor esté fuera del Espacio Económico Europeo, las transferencias se amparan en decisiones de adecuación (p. ej. Marco de Privacidad de Datos UE-EE. UU.) o en cláusulas contractuales tipo.</p>
+
+      <h2>4. Publicidad personalizada</h2>
+      <p>Google y sus socios pueden usar cookies e identificadores para mostrar anuncios. Puedes gestionar tu elección en el banner de consentimiento, en <a href="https://adssettings.google.com" rel="noopener">adssettings.google.com</a> o en <a href="https://www.youronlinechoices.eu" rel="noopener">youronlinechoices.eu</a>.</p>
+
+      <h2>5. Tus derechos</h2>
+      <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad, así como retirar tu consentimiento en cualquier momento, escribiendo a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> e indicando el derecho que ejerces. Si consideras que no hemos atendido tu solicitud, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" rel="noopener">www.aepd.es</a>).</p>
+
+      <h2>6. Menores</h2>
+      <p>El sitio no está dirigido a menores de 14 años. Si crees que un menor nos ha facilitado datos, escríbenos y los eliminaremos.</p>
+
+      <h2>7. Seguridad y cambios</h2>
+      <p>Aplicamos medidas técnicas y organizativas razonables (conexión HTTPS, acceso restringido). Podemos actualizar esta política; la fecha de arriba indica la última versión.</p>
+    </div>
+  </article>
+</Layout>

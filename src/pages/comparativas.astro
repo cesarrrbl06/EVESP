@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { eur, num, consumo100, gapWltp } from '../lib/format';
+const coches = (await getCollection('coches')).sort((a, b) => b.data.realAutonomyKm - a.data.realAutonomyKm);
+---
+<Layout title="Comparativa de coches eléctricos: autonomía real vs WLTP" description="Tabla comparativa de coches eléctricos en España: precio, batería, autonomía WLTP y real, consumo y coste de carga en casa.">
+  <div class="contenedor py-10">
+    <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Comparativa de coches eléctricos</h1>
+    <p class="mt-2 max-w-2xl text-gray-700">Ordenados por autonomía real. La diferencia con WLTP muestra cuánto se aleja la cifra oficial del uso cotidiano. <a class="font-medium text-primario underline underline-offset-2" href="/metodologia/">Ver metodología</a>.</p>
+
+    <div class="mt-8 overflow-x-auto rounded-2xl border border-gray-300" tabindex="0" role="region" aria-label="Tabla comparativa, desplazable horizontalmente">
+      <table class="w-full min-w-[720px] text-left text-sm">
+        <caption class="sr-only">Comparativa de autonomía y coste de carga</caption>
+        <thead class="bg-neutro">
+          <tr>
+            <th scope="col" class="px-4 py-3">Modelo</th><th scope="col" class="px-4 py-3">Precio</th><th scope="col" class="px-4 py-3">Batería</th>
+            <th scope="col" class="px-4 py-3">WLTP</th><th scope="col" class="px-4 py-3">Real</th><th scope="col" class="px-4 py-3">Diferencia</th>
+            <th scope="col" class="px-4 py-3">Consumo real</th><th scope="col" class="px-4 py-3">Carga en casa / 100 km</th>
+          </tr>
+        </thead>
+        <tbody>
+          {coches.map((c) => (
+            <tr class="border-t border-gray-300">
+              <th scope="row" class="px-4 py-3 font-semibold"><a class="text-primario underline underline-offset-2" href={`/coches/${c.slug}/`}>{c.data.brand} {c.data.title}</a></th>
+              <td class="px-4 py-3 tabular-nums">{eur(c.data.priceCash).replace(',00', '')}</td>
+              <td class="px-4 py-3 tabular-nums">{num(c.data.batteryKwh, 1)} kWh</td>
+              <td class="px-4 py-3 tabular-nums">{num(c.data.wltpKm)} km</td>
+              <td class="px-4 py-3 font-bold tabular-nums">{num(c.data.realAutonomyKm)} km</td>
+              <td class="px-4 py-3 tabular-nums">−{gapWltp(c.data.wltpKm, c.data.realAutonomyKm)} %</td>
+              <td class="px-4 py-3 tabular-nums">{num(consumo100(c.data.batteryKwh, c.data.realAutonomyKm), 1)} kWh</td>
+              <td class="px-4 py-3 font-bold tabular-nums text-datos-oscuro">{num(c.data.chargingCostHome, 2)} €</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</Layout>

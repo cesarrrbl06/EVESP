@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white font-sans text-carbon antialiased; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-primario; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .contenedor { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors; }
+  .btn-primario { @apply btn bg-primario text-white hover:bg-primario-oscuro; }
+  .btn-secundario { @apply btn border border-gray-500 bg-white text-carbon hover:bg-neutro; }
+  .campo { @apply block min-h-[44px] w-full rounded-lg border border-gray-500 bg-white px-3 py-2 text-base text-carbon; }
+  .etiqueta { @apply mb-1 block text-sm font-semibold text-carbon; }
+  .ayuda { @apply mt-1 text-sm text-gray-600; }
+
+  /* Texto largo (legales, guías, metodología) */
+  .prose-ev { @apply max-w-3xl text-base leading-7 text-gray-800; }
+  .prose-ev h1 { @apply mb-4 text-3xl font-bold tracking-tight text-carbon sm:text-4xl; }
+  .prose-ev h2 { @apply mb-3 mt-10 text-2xl font-bold text-carbon; }
+  .prose-ev h3 { @apply mb-2 mt-6 text-lg font-semibold text-carbon; }
+  .prose-ev p, .prose-ev ul, .prose-ev ol, .prose-ev blockquote { @apply mb-4; }
+  .prose-ev ul { @apply list-disc pl-6; }
+  .prose-ev ol { @apply list-decimal pl-6; }
+  .prose-ev li { @apply mb-1; }
+  .prose-ev a { @apply font-medium text-primario underline underline-offset-2 hover:text-primario-oscuro; }
+  .prose-ev blockquote { @apply rounded-r-lg border-l-4 border-primario bg-neutro px-4 py-3 text-gray-700; }
+  .prose-ev table { @apply my-6 w-full border-collapse text-left text-sm; }
+  .prose-ev th, .prose-ev td { @apply border border-gray-300 px-3 py-2 align-top; }
+  .prose-ev th { @apply bg-neutro font-semibold; }
+}

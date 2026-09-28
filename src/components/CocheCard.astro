@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { eur, num } from '../lib/format';
+interface Props { coche: CollectionEntry<'coches'>; }
+const { coche } = Astro.props;
+const d = coche.data;
+---
+<article class="relative flex flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white" data-search={`${d.brand} ${d.title}`.toLowerCase()}>
+  <img src={d.image} alt={`${d.brand} ${d.title}`} width="640" height="360" loading="lazy" decoding="async" class="aspect-video w-full bg-neutro object-cover" />
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-sm font-medium text-gray-600">{d.brand}</p>
+    <h3 class="text-lg font-bold">
+      <a href={`/coches/${coche.slug}/`} class="after:absolute after:inset-0 hover:text-primario">{d.title}</a>
+    </h3>
+    <dl class="mt-4 grid grid-cols-3 gap-2 text-sm">
+      <div><dt class="text-gray-600">Precio</dt><dd class="font-bold tabular-nums">{eur(d.priceCash).replace(',00', '')}</dd></div>
+      <div><dt class="text-gray-600">Autonomía real</dt><dd class="font-bold tabular-nums">{num(d.realAutonomyKm)} km</dd></div>
+      <div><dt class="text-gray-600">Carga / 100 km</dt><dd class="font-bold tabular-nums text-datos-oscuro">{num(d.chargingCostHome, 2)} €</dd></div>
+    </dl>
+  </div>
+</article>

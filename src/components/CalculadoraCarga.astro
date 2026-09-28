@@ -1,0 +1,143 @@
+---
+// src/components/CalculadoraCarga.astro — JavaScript vainilla (≈1 KB), sin librerías.
+// Props opcionales para precargar valores desde la ficha de un coche.
+interface Props { batteryKwh?: number; consumption?: number; id?: string; }
+const { batteryKwh = 60, consumption = 17, id = 'calc' } = Astro.props;
+
+const tarifas = [
+  { value: 'valle', label: 'Valle', price: '0.10' },
+  { value: 'llano', label: 'Llano', price: '0.18' },
+  { value: 'rapida', label: 'Carga pública rápida', price: '0.55' },
+  { value: 'custom', label: 'Personalizado', price: '' },
+];
+---
+<section id={id} data-calc aria-labelledby={`${id}-titulo`} class="overflow-hidden rounded-2xl border border-gray-300 bg-white">
+  <div class="flex items-center justify-between bg-carbon px-5 py-4 text-white">
+    <h2 id={`${id}-titulo`} class="text-lg font-bold">Calculadora de coste de carga</h2>
+    <span class="rounded bg-datos px-2 py-1 text-xs font-bold text-carbon">Tiempo real</span>
+  </div>
+
+  <div class="grid gap-0 lg:grid-cols-5">
+    <!-- ENTRADAS -->
+    <form data-form novalidate class="grid gap-5 p-5 lg:col-span-3" autocomplete="off">
+      <div>
+        <label class="etiqueta" for={`${id}-bat`}>Capacidad neta de la batería (kWh)</label>
+        <input class="campo" id={`${id}-bat`} data-in="bat" type="number" inputmode="decimal" min="1" step="0.1" value={batteryKwh} />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="etiqueta" for={`${id}-s0`}>Carga inicial (%)</label>
+          <input class="campo" id={`${id}-s0`} data-in="s0" type="number" inputmode="numeric" min="0" max="100" step="1" value="10" />
+        </div>
+        <div>
+          <label class="etiqueta" for={`${id}-s1`}>Carga final (%)</label>
+          <input class="campo" id={`${id}-s1`} data-in="s1" type="number" inputmode="numeric" min="0" max="100" step="1" value="80" />
+        </div>
+      </div>
+
+      <fieldset>
+        <legend class="etiqueta">Tipo de tarifa</legend>
+        <div class="flex flex-wrap gap-2">
+          {tarifas.map((t) => (
+            <label class="cursor-pointer">
+              <input type="radio" class="peer sr-only" name={`${id}-tarifa`} value={t.value} data-price={t.price} data-tarifa checked={t.value === 'llano'} />
+              <span class="inline-flex min-h-[44px] items-center rounded-lg border border-gray-500 px-3 py-2 text-sm font-medium peer-checked:border-primario peer-checked:bg-primario peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-primario">
+                {t.label}{t.price && ` · ${t.price.replace('.', ',')} €`}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div>
+        <label class="etiqueta" for={`${id}-precio`}>Precio del kWh (€)</label>
+        <input class="campo" id={`${id}-precio`} data-in="price" type="number" inputmode="decimal" min="0" step="0.01" value="0.18" aria-describedby={`${id}-precio-ayuda`} />
+        <p class="ayuda" id={`${id}-precio-ayuda`}>Precios de referencia. Si lo editas, se selecciona «Personalizado».</p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="etiqueta" for={`${id}-cons`}>Consumo medio (kWh/100 km)</label>
+          <input class="campo" id={`${id}-cons`} data-in="cons" type="number" inputmode="decimal" min="1" step="0.1" value={consumption} />
+        </div>
+        <div class="flex items-end">
+          <label class="flex min-h-[44px] cursor-pointer items-center gap-3 text-sm font-medium">
+            <input type="checkbox" data-in="ac" checked class="h-5 w-5 rounded border-gray-500 accent-primario" />
+            Carga en alterna (AC): +10 % de pérdidas
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <button type="reset" class="btn-secundario">Restablecer valores</button>
+      </div>
+    </form>
+
+    <!-- RESULTADOS -->
+    <div class="bg-neutro p-5 lg:col-span-2">
+      <p data-error role="alert" hidden class="mb-3 rounded-lg bg-white p-3 text-sm font-semibold text-red-700"></p>
+      <div aria-live="polite" aria-atomic="true">
+        <p class="text-sm font-semibold text-gray-700">Coste total de la recarga</p>
+        <p class="text-5xl font-extrabold tabular-nums text-datos-oscuro" data-out="total">—</p>
+        <dl class="mt-5 grid gap-3 text-sm">
+          <div class="flex justify-between gap-4 border-b border-gray-300 pb-2"><dt>kWh netos a la batería</dt><dd class="font-bold tabular-nums" data-out="net">—</dd></div>
+          <div class="flex justify-between gap-4 border-b border-gray-300 pb-2"><dt>kWh facturados (con pérdidas)</dt><dd class="font-bold tabular-nums" data-out="billed">—</dd></div>
+          <div class="flex justify-between gap-4 border-b border-gray-300 pb-2"><dt>Kilómetros añadidos</dt><dd class="font-bold tabular-nums" data-out="km">—</dd></div>
+          <div class="flex justify-between gap-4"><dt>Coste por 100 km</dt><dd class="font-bold tabular-nums text-datos-oscuro" data-out="per100">—</dd></div>
+        </dl>
+      </div>
+      <p class="mt-5 text-xs text-gray-600">Estimación orientativa. Los precios son ejemplos: consulta tu factura o la app del operador.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const nf = (d: number) => new Intl.NumberFormat('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
+  const LOSS = 0.1; // pérdidas estimadas en carga AC
+
+  document.querySelectorAll<HTMLElement>('[data-calc]').forEach((root) => {
+    const $ = <T extends HTMLElement>(s: string) => root.querySelector<T>(s)!;
+    const form = $<HTMLFormElement>('[data-form]');
+    const inp = (k: string) => $<HTMLInputElement>(`[data-in="${k}"]`);
+    const out = (k: string) => $<HTMLElement>(`[data-out="${k}"]`);
+    const err = $<HTMLElement>('[data-error]');
+    const radios = root.querySelectorAll<HTMLInputElement>('[data-tarifa]');
+    const val = (k: string) => parseFloat(inp(k).value.replace(',', '.'));
+
+    function update() {
+      const cap = val('bat'), s0 = val('s0'), s1 = val('s1'), price = val('price'), cons = val('cons');
+      const loss = inp('ac').checked ? LOSS : 0;
+      let msg = '';
+      if (!(cap > 0)) msg = 'Introduce la capacidad neta de la batería.';
+      else if (!(s0 >= 0 && s0 <= 100 && s1 >= 0 && s1 <= 100)) msg = 'Los porcentajes deben estar entre 0 y 100.';
+      else if (s1 <= s0) msg = 'La carga final debe ser mayor que la inicial.';
+      else if (!(price >= 0)) msg = 'Introduce un precio del kWh válido.';
+      else if (!(cons > 0)) msg = 'Introduce un consumo medio válido.';
+
+      err.hidden = !msg; err.textContent = msg;
+      if (msg) { ['total', 'net', 'billed', 'km', 'per100'].forEach((k) => (out(k).textContent = '—')); return; }
+
+      const net = (cap * (s1 - s0)) / 100;
+      const billed = net * (1 + loss);
+      out('net').textContent = `${nf(1).format(net)} kWh`;
+      out('billed').textContent = `${nf(1).format(billed)} kWh`;
+      out('total').textContent = eur.format(billed * price);
+      out('km').textContent = `${nf(0).format((net / cons) * 100)} km`;
+      out('per100').textContent = eur.format(cons * (1 + loss) * price);
+    }
+
+    radios.forEach((r) => r.addEventListener('change', () => {
+      if (r.value !== 'custom') inp('price').value = r.dataset.price!;
+      if (r.value !== 'custom') inp('ac').checked = r.value !== 'rapida'; // la rápida es DC: sin +10 %
+      update();
+    }));
+    inp('price').addEventListener('input', () => {
+      radios.forEach((r) => (r.checked = r.value === 'custom'));
+    });
+    form.addEventListener('input', update);
+    form.addEventListener('reset', () => setTimeout(update, 0)); // tras restaurar los valores por defecto
+    update();
+  });
+</script>

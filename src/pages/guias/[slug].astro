@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import { SITE } from '../../config/site';
+import { fechaLarga } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const guias = await getCollection('guias');
+  return guias.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+const article = {
+  '@type': 'Article', headline: d.title, description: d.description, datePublished: d.pubDate.toISOString(),
+  author: { '@type': 'Organization', name: d.author }, publisher: { '@id': `${SITE.url}/#organization` },
+  mainEntityOfPage: `${SITE.url}/guias/${entry.slug}/`, inLanguage: 'es-ES',
+};
+---
+<Layout title={d.title} description={d.description} type="article" publishedTime={d.pubDate} jsonLd={[article]}>
+  <article class="contenedor py-10">
+    <div class="prose-ev">
+      <nav aria-label="Ruta de navegación" class="mb-4 text-sm text-gray-600"><a href="/guias/">Guías</a> / {d.category}</nav>
+      <h1>{d.title}</h1>
+      <p class="text-sm text-gray-600">Por {d.author} · <time datetime={d.pubDate.toISOString()}>{fechaLarga(d.pubDate)}</time></p>
+      <!-- Sustituye slot="0000000000" por el ID de bloque de anuncio real -->
+      <AdSlot slot="0000000000" />
+      <Content />
+    </div>
+  </article>
+</Layout>
