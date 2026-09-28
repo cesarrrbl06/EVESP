@@ -2,7 +2,7 @@
 // el Aviso Legal (LSSI-CE, art. 10) exige identificar al titular de la web.
 export const SITE = {
   name: 'EV España',
-  url: 'https://evespana.es',
+  url: 'https://evesp.vercel.app/',
   email: 'evespanaaa@gmail.com',
   titular: 'Cesar Manuel Robalo Fariñas',
   nif: '60567749D',
