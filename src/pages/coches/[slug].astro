@@ -41,6 +41,15 @@ const filas: [string, string][] = [
 
     <div class="prose-ev mt-10"><Content /></div>
 
+    {d.officialUrl && (
+      <div class="mt-8 flex justify-center">
+        <a href={d.officialUrl} target="_blank" rel="noopener noreferrer" class="btn-primario gap-3 items-center text-lg px-8 py-4 bg-gradient-to-r from-gray-900 to-black border-none shadow-lg hover:shadow-2xl text-white">
+          {d.logoUrl && <img src={d.logoUrl} alt={`Logo de ${d.brand}`} class="h-6 w-auto object-contain bg-white/10 rounded-sm p-1" />}
+          Para más info visita {d.brand}
+        </a>
+      </div>
+    )}
+
     <h2 class="mb-4 mt-12 text-2xl font-bold">Calcula tu recarga con este coche</h2>
     <CalculadoraCarga id="calc-coche" batteryKwh={d.batteryKwh} consumption={Math.round(consumo * 10) / 10} />
   </div>

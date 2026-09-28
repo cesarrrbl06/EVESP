@@ -14,6 +14,8 @@ const coches = defineCollection({
     chargingCostHome: z.number().positive(), // € por cada 100 km cargando en casa
     image: z.string().default('/img/coche-placeholder.svg'),
     description: z.string().max(160),        // también sirve de meta description
+    officialUrl: z.string().url().optional(),
+    logoUrl: z.string().url().optional(),
   }),
 });
 

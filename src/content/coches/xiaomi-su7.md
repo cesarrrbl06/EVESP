@@ -6,7 +6,9 @@ batteryKwh: 101
 wltpKm: 800
 realAutonomyKm: 650
 chargingCostHome: 3.5
-image: "https://images.unsplash.com/photo-1707921820464-9f4414bc699b?ixlib=rb-4.0.3&auto=format&fit=crop&w=640&q=80"
+image: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Xiaomi_SU7_002.jpg"
+officialUrl: "https://www.mi.com/global/xiaomi-ev/"
+logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Xiaomi_logo.svg/512px-Xiaomi_logo.svg.png"
 description: "El primer coche eléctrico de Xiaomi rompe moldes con aceleración hiperdeportiva, integración total y autonomía espectacular."
 ---
 ## Resumen
