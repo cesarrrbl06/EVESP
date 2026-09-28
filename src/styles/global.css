@@ -4,7 +4,20 @@
 
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { @apply bg-white font-sans text-carbon antialiased; }
+  body { 
+    @apply bg-slate-50 font-sans text-carbon antialiased relative overflow-x-hidden; 
+    background: linear-gradient(135deg, rgba(246, 248, 253, 1) 0%, rgba(226, 236, 245, 1) 100%);
+  }
+  body::before {
+    content: ''; position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    border-radius: 50%; z-index: -1; filter: blur(40px);
+  }
+  body::after {
+    content: ''; position: fixed; bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+    border-radius: 50%; z-index: -1; filter: blur(50px);
+  }
   :focus-visible { @apply outline outline-2 outline-offset-2 outline-primario; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -14,15 +27,16 @@
 
 @layer components {
   .contenedor { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
-  .btn { @apply inline-flex min-h-[44px] items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors; }
-  .btn-primario { @apply btn bg-primario text-white hover:bg-primario-oscuro; }
-  .btn-secundario { @apply btn border border-gray-500 bg-white text-carbon hover:bg-neutro; }
-  .campo { @apply block min-h-[44px] w-full rounded-lg border border-gray-500 bg-white px-3 py-2 text-base text-carbon; }
-  .etiqueta { @apply mb-1 block text-sm font-semibold text-carbon; }
-  .ayuda { @apply mt-1 text-sm text-gray-600; }
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 backdrop-blur-md shadow-sm; }
+  .btn-primario { @apply btn bg-blue-600/90 text-white hover:bg-blue-700/90 hover:shadow-md hover:scale-[1.02] border border-white/20; }
+  .btn-secundario { @apply btn border border-white/40 bg-white/50 text-carbon hover:bg-white/70 hover:shadow-md hover:scale-[1.02]; }
+  .campo { @apply block min-h-[44px] w-full rounded-xl border border-white/50 bg-white/40 px-3 py-2 text-base text-carbon backdrop-blur-sm transition-all focus:bg-white/70 focus:border-blue-500/50 focus:ring focus:ring-blue-500/20 shadow-sm; }
+  .etiqueta { @apply mb-1 block text-sm font-semibold text-carbon/90; }
+  .ayuda { @apply mt-1 text-sm text-gray-600/90; }
+  .tarjeta-glass { @apply rounded-2xl border border-white/40 bg-white/40 p-6 shadow-xl backdrop-blur-md transition-all hover:bg-white/50 hover:shadow-2xl; }
 
   /* Texto largo (legales, guías, metodología) */
-  .prose-ev { @apply max-w-3xl text-base leading-7 text-gray-800; }
+  .prose-ev { @apply max-w-3xl text-base leading-7 text-gray-800 tarjeta-glass mx-auto; }
   .prose-ev h1 { @apply mb-4 text-3xl font-bold tracking-tight text-carbon sm:text-4xl; }
   .prose-ev h2 { @apply mb-3 mt-10 text-2xl font-bold text-carbon; }
   .prose-ev h3 { @apply mb-2 mt-6 text-lg font-semibold text-carbon; }

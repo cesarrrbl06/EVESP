@@ -3,10 +3,10 @@
 export const SITE = {
   name: 'EV España',
   url: 'https://evespana.es',
-  email: 'contacto@evespana.es',
-  titular: '[NOMBRE Y APELLIDOS O RAZÓN SOCIAL]',
-  nif: '[NIF / CIF]',
-  domicilio: '[DIRECCIÓN POSTAL COMPLETA]',
+  email: 'evespanaaa@gmail.com',
+  titular: 'Cesar Manuel Robalo Fariñas',
+  nif: '60567749D',
+  domicilio: 'España',
   registro: '', // Solo si eres sociedad: datos del Registro Mercantil
   actualizado: '28 de septiembre de 2026',
   adsenseClient: import.meta.env.PUBLIC_ADSENSE_CLIENT ?? '',
